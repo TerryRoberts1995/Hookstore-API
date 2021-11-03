@@ -27,7 +27,7 @@ class Book(db.Model):
 
 class BookSchema(ma.Schema):
     class Meta: 
-        fields: ("id", "title", "author", "review", "genre")
+        fields = ("id", "title", "author", "review", "genre")
 
 book_schema = BookSchema()
 multiple_book_schema = BookSchema(many=True)
@@ -43,6 +43,7 @@ def add_book():
     review = post_data.get('review')
     genre = post_data.get('genre')
 
+
     if title == None:
         return jsonify("Error: Data must have a 'Title' key.")
 
@@ -55,6 +56,10 @@ def add_book():
 
     return jsonify("You've added a book!")
 
+@app.route("/book/get", methods=["GET"])
+def get_books():
+    books = db.session.query(Book).all()
+    return jsonify(multiple_book_schema.dump(books))
 
 if __name__ == "__main__":
     app.run(debug=True)
