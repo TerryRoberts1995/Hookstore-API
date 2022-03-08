@@ -1,18 +1,21 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from dotenv import dotenv_values
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 import os
-
+config = dotenv_values('.env')
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://aackpqseyazxrs:40ab4697075dfd61d551d06802d5b2491d7aaabdc31f0ca7c40adb1143506eef@ec2-52-70-67-123.compute-1.amazonaws.com:5432/d9430bfb59m1fc"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:" + config["DATABASE_URL"]
+print("postgresql:" + config["DATABASE_URL"])
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 CORS(app)
 bcrypt = Bcrypt(app)
+
 
 
 class User(db.Model):
