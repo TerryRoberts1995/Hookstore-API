@@ -9,7 +9,7 @@ config = dotenv_values('.env')
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-print(config)
+print(config, 'TTTTTTTTTTTTTTTTTTTT')
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:" + config["DATABASE_URL"]
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
