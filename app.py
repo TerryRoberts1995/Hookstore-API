@@ -90,13 +90,13 @@ def get_user_by_username(username):
     user = db.session.query(User).filter(User.username == username).first()
     return jsonify(user_schema.dump(user))
 
-@app.route('/user/delete', methods=['DELETE'])
-def delete_users():
-    all_users = db.session.query(User).all()
-    for user in all_users:
-        db.session.delete(user)
-    db.session.commit()
-    return jsonify("All users have has been deleted.")
+# @app.route('/user/delete', methods=['DELETE'])
+# def delete_users():
+#     all_users = db.session.query(User).all()
+#     for user in all_users:
+#         db.session.delete(user)
+#     db.session.commit()
+#     return jsonify("All users have has been deleted.")
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
