@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(basedir, "app.sqlite")
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://aackpqseyazxrs:40ab4697075dfd61d551d06802d5b2491d7aaabdc31f0ca7c40adb1143506eef@ec2-52-70-67-123.compute-1.amazonaws.com:5432/d9430bfb59m1fc"
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 CORS(app)
