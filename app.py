@@ -9,8 +9,8 @@ config = dotenv_values('.env')
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-print("postgresql:" + config["DATABASE_URL"])
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:" + config["DATABASE_URL"]
+print("postgresql:" + config["DATABASE_STRING"])
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:" + config["DATABASE_STRING"]
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 CORS(app)
